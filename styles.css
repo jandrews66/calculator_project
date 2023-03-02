@@ -1,0 +1,45 @@
+#calculator {
+    background-color: rgb(227, 245, 251);
+    display: flex;
+    width: 550px;
+    height: auto;
+    flex-direction: column;
+}
+
+#screen {
+    background-color: lightgray;
+    display: flex;
+    height: 50px;
+    margin: 10px;
+}
+
+#top-btns {
+    background-color: blanchedalmond;
+    display: flex;
+    flex-grow: 1;
+
+}
+#top-btns > div {
+    background-color: lightgreen;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    margin: 5px 20px;
+    padding: 5px;
+}
+
+#btns {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#btns > div {
+    background-color: lightgray;
+    display: flex;
+    width: 100px;
+    justify-content: center;
+    padding: 10px;
+    margin: 5px;
+    flex-wrap: wrap;
+}
