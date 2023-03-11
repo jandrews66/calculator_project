@@ -3,45 +3,55 @@ const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
 
-let valueA = "";
-let valueB = "";
+let a = "";
+let b = "";
+let c = "";
+
 let selectedOperator = "";
 
 const operate = function (){
     store();
-    a = parseInt(valueA);
-    b = parseInt(valueB);
-    
     if (selectedOperator === "+" ){
-        display.innerHTML = add(a,b);
-        valueA = display.innerHTML;
+        c = add(a, b);
+        a = c;
+        b = "";
+        selectedOperator = "";
+        showTopDisplay();
+        btmDisplay.innerHTML = "";
+      
     } else if (selectedOperator === "-") {
-        display.innerHTML = subtract(a,b);
-        valueA = display.innerHTML;
+        c = subtract(a, b);
+        a = c;
+        b = "";
+        selectedOperator = "";
+        showTopDisplay();
+        btmDisplay.innerHTML = "";
     } else if (selectedOperator === "*") {
-        display.innerHTML = multiply(a,b);
-        valueA = display.innerHTML;
+        c = multiply(a, b);
+        a = c;
+        b = "";
+        selectedOperator = "";
+        showTopDisplay();
+        btmDisplay.innerHTML = "";
     } else if (selectedOperator === "/") {
-        display.innerHTML = divide(a,b);
-        valueA = display.innerHTML;
+        c = divide(a, b);
+        a = c;
+        b = "";
+        selectedOperator = "";
+        showTopDisplay();
+        btmDisplay.innerHTML = "";
     }
 }
 
-const display = document.getElementById("screen");
+const topDisplay = document.getElementById("top-display");
+const btmDisplay = document.getElementById("btm-display");
 
-// const onClick = (event) => {
-//     console.log(event.target.innerHTML);
-//     display.innerHTML += event.target.innerHTML;
-//   }
-//   window.addEventListener('click', onClick);
 
 const nums = document.getElementsByClassName("nums");
 
 const numClick = (event) => {
-    if (display.innerHTML == selectedOperator) {
-        display.innerHTML = "";
-    }
-    display.innerHTML += event.target.innerHTML;
+    btmDisplay.innerHTML += event.target.innerHTML;
+    showTopDisplay();
   }
 
 for (let num of nums) {
@@ -51,24 +61,165 @@ for (let num of nums) {
 const operators = document.getElementsByClassName("operator");
 
 const opsClick = (event) => {
-    store();
+    if (selectedOperator == ""){
     selectedOperator = event.target.innerHTML;
-    display.innerHTML = event.target.innerHTML;
+    store();
+    showTopDisplay();
+    btmDisplay.innerHTML = "";
+    } else {
+        operate();
+        selectedOperator = event.target.innerHTML;
+        topDisplay.innerHTML += selectedOperator;
+
+    }
   }
 
 for (let operator of operators) {
     operator.addEventListener("click", opsClick);
 }
 
+const showTopDisplay = function () {
+    aString = a.toString();
+    bString = b.toString();
+
+    topDisplay.innerHTML = aString + selectedOperator + bString;
+}
+
 const store = function() { 
-    if (valueA == false){
-    valueA = display.innerHTML;
+    if (a == false){
+    a = parseFloat(btmDisplay.innerHTML);
     } else {
-    valueB = display.innerHTML;
+    b = parseFloat(btmDisplay.innerHTML);
     }
 }
+
+
 
 const equals = document.getElementById("equals");
 equals.addEventListener("click", operate);
 
+const clear = document.getElementById("clear");
+const clearDisplay = function() { 
+    display.innerHTML = "";
+    valueA = "";
+    valueB = "";
+}
+clear.addEventListener("click", clearDisplay);
 
+const remove = document.getElementById("delete");
+const removeChar = function(){
+    string = display.innerHTML;
+    newString = string.slice(0,-1);
+    display.innerHTML = newString;
+}
+remove.addEventListener("click", removeChar);
+
+const decimal = document.getElementById("decimal");
+const addDecimal = () => {
+    display.innerHTML += ".";
+}
+decimal.addEventListener("click", addDecimal);
+
+
+
+// 
+// const add = (a, b) => a + b;
+// const subtract = (a, b) => a - b;
+// const multiply = (a, b) => a * b;
+// const divide = (a, b) => a / b;
+
+// let valueA = "";
+// let valueB = "";
+// let selectedOperator = "";
+
+// const operate = function (){
+//     store();
+//     a = parseFloat(valueA);
+//     b = parseFloat(valueB);
+    
+//     if (selectedOperator === "+" ){
+//         display.innerHTML = add(a,b);
+//         valueA = display.innerHTML;
+//         valueB = "";
+//         selectedOperator = "";
+//     } else if (selectedOperator === "-") {
+//         display.innerHTML = subtract(a,b);
+//         valueA = display.innerHTML;
+//         valueB = "";
+//         selectedOperator = "";
+//     } else if (selectedOperator === "*") {
+//         display.innerHTML = multiply(a,b);
+//         valueA = display.innerHTML;
+//         valueB = "";
+//         selectedOperator = "";
+//     } else if (selectedOperator === "/") {
+//         display.innerHTML = divide(a,b);
+//         valueA = display.innerHTML;
+//         valueB = "";
+//         selectedOperator = "";
+//     }
+// }
+
+// const display = document.getElementById("screen");
+
+// const nums = document.getElementsByClassName("nums");
+
+// const numClick = (event) => {
+//     if (display.innerHTML == selectedOperator) {
+//         display.innerHTML = "";
+//     }
+//     display.innerHTML += event.target.innerHTML;
+//   }
+
+// for (let num of nums) {
+//     num.addEventListener("click", numClick);
+// }
+
+// const operators = document.getElementsByClassName("operator");
+
+// const opsClick = (event) => {
+//     if (selectedOperator !== ""){
+//         operate();
+//     } else {
+//     store();
+//     selectedOperator = event.target.innerHTML;
+//     display.innerHTML = event.target.innerHTML;
+//     }
+//   }
+
+// for (let operator of operators) {
+//     operator.addEventListener("click", opsClick);
+// }
+
+// const store = function() { 
+//     if (valueA == false){
+//     valueA = parseFloat(display.innerHTML);
+//     } else {
+//     valueB = parseFloat(display.innerHTML);
+//     }
+// }
+
+// const equals = document.getElementById("equals");
+// equals.addEventListener("click", operate);
+
+// const clear = document.getElementById("clear");
+// const clearDisplay = function() { 
+//     display.innerHTML = "";
+//     valueA = "";
+//     valueB = "";
+// }
+// clear.addEventListener("click", clearDisplay);
+
+// const remove = document.getElementById("delete");
+// const removeChar = function(){
+//     string = display.innerHTML;
+//     newString = string.slice(0,-1);
+//     display.innerHTML = newString;
+// }
+// remove.addEventListener("click", removeChar);
+
+// const decimal = document.getElementById("decimal");
+// const addDecimal = () => {
+//     display.innerHTML += ".";
+// }
+// decimal.addEventListener("click", addDecimal);
