@@ -1,39 +1,53 @@
 #calculator {
-    background-color: rgb(227, 245, 251);
+    background-color: rgb(160, 176, 182);
     display: flex;
-    width: 550px;
-    height: auto;
+    width: 400px;
+    height: 500px;
     flex-direction: column;
+    border-radius: 10px;
 }
 
 #screen {
     background-color: lightgray;
     display: flex;
-    height: 50px;
-    margin: 10px;
+    height: 75px;
+    margin: 15px 15px 5px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    border: 1px solid rgba(49, 49, 49, 0.555);
+
 }
 
 #btm-display {
-    font-size: 22px;
-    margin: 5px;
+    font-size: 24px;
+    margin: 3px 15px;
+}
+
+#top-display {
+    font-size: 24px;
+    margin: 3px 15px;
 }
 
 #top-btns {
-    background-color: blanchedalmond;
     display: flex;
-    flex-grow: 1;
-
+    margin: 5px;
 }
 #top-btns > div {
-    background-color: lightgreen;
+    background-color: rgb(97, 214, 97);
     display: flex;
     flex: 1;
     justify-content: center;
     margin: 5px 20px;
     padding: 5px;
+    border-bottom: 1px solid rgba(49, 49, 49, 0.555);
+
+}
+
+#btm-btns{
+    display: flex;
+    flex: 1;
+    margin-bottom: 15px;
 }
 
 #btns {
@@ -43,11 +57,47 @@
     justify-content: center;
 }
 #btns > div {
-    background-color: lightgray;
     display: flex;
-    width: 100px;
+    width: 60px;
     justify-content: center;
+    align-items: center;
     padding: 10px;
     margin: 5px;
     flex-wrap: wrap;
+    border-bottom: 1px solid rgba(49, 49, 49, 0.555);
+
+}
+.operator {
+    background-color: rgb(245, 85, 85);
+}
+
+.operator:hover {
+    background-color: rgb(245, 75, 75);
+}
+
+.nums {
+    background-color: rgb(128, 128, 128);
+}
+
+.nums:hover {
+    background-color: rgb(128, 118, 118);
+}
+#decimal {
+    background-color: rgb(128, 128, 128);
+}
+
+#decimal:hover {
+    background-color: rgb(128, 118, 118);
+
+}
+#equals {
+    background-color: rgb(97, 214, 97);
+}
+#equals:hover {
+    background-color: rgb(97, 204, 87);
+}
+
+#top-btns > div:hover {
+    background-color: rgb(97, 204, 87);
+
 }

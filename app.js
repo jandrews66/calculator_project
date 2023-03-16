@@ -35,6 +35,9 @@ const operate = function (){
         btmDisplay.innerHTML = "";
     } else if (selectedOperator === "/") {
         c = divide(a, b);
+        if (c == Infinity){
+            c = "fuck off"
+        }
         a = c;
         b = "";
         selectedOperator = "";
@@ -58,6 +61,8 @@ for (let num of nums) {
     num.addEventListener("click", numClick);
 }
 
+
+
 const operators = document.getElementsByClassName("operator");
 
 const opsClick = (event) => {
@@ -79,10 +84,7 @@ for (let operator of operators) {
 }
 
 const showTopDisplay = function () {
-    aString = a.toString();
-    bString = b.toString();
-
-    topDisplay.innerHTML = aString + selectedOperator + bString;
+    topDisplay.innerHTML = a + selectedOperator;
 }
 
 const store = function() { 
@@ -100,26 +102,30 @@ equals.addEventListener("click", operate);
 
 const clear = document.getElementById("clear");
 const clearDisplay = function() { 
-    display.innerHTML = "";
-    valueA = "";
-    valueB = "";
+    btmDisplay.innerHTML = ""; 
+    topDisplay.innerHTML = ""; 
+    a = "";
+    b = "";
+    selectedOperator = "";
+
 }
 clear.addEventListener("click", clearDisplay);
 
 const remove = document.getElementById("delete");
 const removeChar = function(){
-    string = display.innerHTML;
+    string = btmDisplay.innerHTML;
     newString = string.slice(0,-1);
-    display.innerHTML = newString;
+    btmDisplay.innerHTML = newString;
 }
 remove.addEventListener("click", removeChar);
 
 const decimal = document.getElementById("decimal");
 const addDecimal = () => {
-    display.innerHTML += ".";
+    if (!btmDisplay.innerHTML.includes(".")){
+    btmDisplay.innerHTML += ".";
+    }
 }
 decimal.addEventListener("click", addDecimal);
-
 
 
 // 
